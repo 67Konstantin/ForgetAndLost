@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.SettingsProfile">
+
+    <ImageView
+        android:id="@+id/backSettings"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/icon_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="Back"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/flImageProfileRedact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginHorizontal="20dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivImageProfileRedact"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/RoundedCircle"
+                app:strokeColor="#C7C5FB"
+                app:strokeWidth="9dp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|right"
+                android:background="@color/dark_grey"
+                android:src="@drawable/ic_baseline_add_24"
+                app:shapeAppearanceOverlay="@style/RoundedCircle" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="Нажмите на фотографию для того чтобы поменять"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Ваше имя"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/etProfileNameRedact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg"
+        android:padding="10dp"
+        android:text="Имя"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Ваша почта (нельзя поменять)"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvProfileEmailRedact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg"
+        android:padding="10dp"
+        android:text="Почта"
+        android:textColor="@color/dark_grey"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Ваш пароль"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/etPasswordRedact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:text="Ваш пароль"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvChangePasswordRedact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginHorizontal="20dp"
+        android:onClick="SingInGoogle"
+        android:padding="5dp"
+        android:text="Нажмите чтобы сменить пароль"
+        android:textColor="#4540F7"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/bg_blue_active_bt"
+        android:textSize="16sp"
+        android:text="Сохранить" />
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/lost"
+        android:title="Находки"
+        android:icon="@drawable/icon_lost_things"/>
+
+    <item
+        android:id="@+id/gift"
+        android:title="Даром"
+        android:icon="@drawable/icon_gift"
+        />
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/messages"
+        android:title="Месседжер"
+        android:icon="@drawable/icon_messenger" />
+    <item
+        android:id="@+id/profile"
+        android:title="Профиль"
+        android:icon="@drawable/icon_person" />
+
+</menu>

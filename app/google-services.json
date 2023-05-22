@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905950138026",
+    "project_id": "forgetandlost-d5238",
+    "storage_bucket": "forgetandlost-d5238.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905950138026:android:655bff5133f9e0e15fcad3",
+        "android_client_info": {
+          "package_name": "com.example.forgetandlost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905950138026-sc59eucplo4ug138849qilacmdqnoe2r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0EkJD3Dgd51RcCnsjE73_ewi_Z-pvml0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905950138026-sc59eucplo4ug138849qilacmdqnoe2r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
