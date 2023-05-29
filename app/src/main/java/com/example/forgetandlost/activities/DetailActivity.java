@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,7 +32,9 @@ import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView etName, etdescribing, etconditions, etarea, etdata;
+    TextView etdata;
+    EditText etName, etdescribing, etconditions;
+    AutoCompleteTextView etarea;
     String name;
     String describing;
     String image;
@@ -74,6 +78,10 @@ public class DetailActivity extends AppCompatActivity {
             relativeLayout = findViewById(R.id.rlDetail);
             relativeLayout1 = getLayoutInflater().inflate(R.layout.floating_bar_detail_my, null);
         }
+        etName.setEnabled(false);
+        etdescribing.setEnabled(false);
+        etconditions.setEnabled(false);
+        etarea.setEnabled(false);
         //ставлю на свои места
         {
             etName.setText(name);
@@ -96,7 +104,6 @@ public class DetailActivity extends AppCompatActivity {
             });
         }
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("things");
-        FirebaseStorage storage = FirebaseStorage.getInstance();
         if (Objects.equals(userId, FirebaseAuth.getInstance().getUid())) {
             relativeLayout.addView(relativeLayout1);
             deleteButton = relativeLayout1.findViewById(R.id.deleteButton);
@@ -106,6 +113,15 @@ public class DetailActivity extends AppCompatActivity {
                 reference.child("Отдам даром").child(FirebaseAuth.getInstance().getUid()).child(key).removeValue();
                 Toast.makeText(DetailActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
                 onBackPressed();
+            });
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    etName.setEnabled(true);
+                    etdescribing.setEnabled(true);
+                    etconditions.setEnabled(true);
+                    etarea.setEnabled(true);
+                }
             });
         }
 

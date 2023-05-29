@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -58,6 +59,7 @@ public class GiftFragmentMyRecords extends Fragment {
     SearchView searchView;
     private ALodingDialog aLodingDialog;
     FirebaseUser user;
+    ImageView back;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +68,7 @@ public class GiftFragmentMyRecords extends Fragment {
         View view = inflater.inflate(R.layout.fragment_gift_my_records, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewMyGift);
         searchView = view.findViewById(R.id.searchMyGift);
+        back = view.findViewById(R.id.imageBack1);
         searchView.clearFocus();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -109,6 +112,7 @@ public class GiftFragmentMyRecords extends Fragment {
                 return true;
             }
         });
+        back.setOnClickListener(view1 -> getActivity().onBackPressed());
         return view;
     }
     public void searchList(String text) {

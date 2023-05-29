@@ -20,7 +20,7 @@
         android:layout_height="40dp"
         android:layout_margin="5dp"
         android:src="@drawable/icon_back" />
-    <TextView
+    <EditText
         android:id="@+id/detailName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                     android:text="Описание"
                     android:textStyle="italic" />
 
-                <TextView
+                <EditText
                     android:id="@+id/detaildescribing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
                     android:text="Условия / Контакты"
                     android:textStyle="italic" />
 
-                <TextView
+                <EditText
                     android:id="@+id/detailConditions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                     android:text="Область"
                     android:textStyle="italic" />
 
-                <TextView
+                <AutoCompleteTextView
                     android:id="@+id/detailArea"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -5,27 +5,44 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.LostFragmentMyRecords">
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchMyLost"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/lavender_border"
-        android:focusable="false"
-        app:closeIcon="@drawable/baseline_clear_24"
-        app:iconifiedByDefault="false"
-        app:queryHint="Search..."
-        app:searchHintIcon="@null"
-        app:searchIcon="@drawable/baseline_search_24" />
+        android:id="@+id/lol"
+        android:layout_marginTop="16dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageBack2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_back"
+            android:layout_gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchMyLost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/lavender_border"
+            android:focusable="false"
+            app:closeIcon="@drawable/baseline_clear_24"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search..."
+            app:searchHintIcon="@null"
+            app:searchIcon="@drawable/baseline_search_24" />
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMyLost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchMyLost"
+        android:layout_below="@id/lol"
         android:layout_marginTop="10dp"
         android:scrollbars="vertical" />
 
