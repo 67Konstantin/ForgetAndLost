@@ -2,6 +2,7 @@ package com.example.forgetandlost.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,7 @@ public class LostThingsFragment extends Fragment {
                     if (!(Objects.equals(s, FirebaseAuth.getInstance().getUid()))) {
                         for (DataSnapshot ds : snapshot.child(s).getChildren()) {
                             HelperClassThings helperClassThings = ds.getValue(HelperClassThings.class);
+                            Log.d("777",ds.getKey());
                             dataList.add(helperClassThings);
                         }
 

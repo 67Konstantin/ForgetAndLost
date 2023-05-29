@@ -45,7 +45,6 @@ public class MyAdapterUsers extends RecyclerView.Adapter<MyViewHolderUsers> {
         holder.listName.setText(name);
         holder.listEmail.setText(email);
 
-
         holder.recCard.setOnClickListener(view -> {
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("image", dataList.get(holder.getAdapterPosition()).getImage());

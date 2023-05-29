@@ -5,7 +5,7 @@ public class HelperClassThings {
 
     private String key;
 
-    public HelperClassThings(String name, String describing, String conditions, String area, String data, String userId, String image) {
+    public HelperClassThings(String name, String describing, String conditions, String area, String data, String userId, String image, String key) {
         this.name = name;
         this.describing = describing;
         this.conditions = conditions;
@@ -13,6 +13,7 @@ public class HelperClassThings {
         this.data = data;
         this.userId = userId;
         this.image = image;
+        this.key = key;
     }
 
     public String getKey() {

@@ -73,8 +73,8 @@ public class Registration extends AppCompatActivity {
             linearLayout = findViewById(R.id.lineal);
             tv2 = findViewById(R.id.tv2);
             LayoutInflater inflater = getLayoutInflater();
-            layer1 = inflater.inflate(R.layout.layer1, null);
 
+            layer1 = inflater.inflate(R.layout.layer1, null);
         }
         SpannableString ss = new SpannableString("Даю согласие на обработку \n " + "  " + "персональных данных");
         ClickableSpan clickableSpan = new ClickableSpan() {
@@ -93,8 +93,6 @@ public class Registration extends AppCompatActivity {
         checkBox.setText(ss);
         checkBox.setMovementMethod(LinkMovementMethod.getInstance());
         checkBox.setHighlightColor(Color.TRANSPARENT);
-
-
     }
 
     public void SingInGoogle(View view) {

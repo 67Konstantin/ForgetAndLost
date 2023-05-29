@@ -92,8 +92,7 @@ public class List extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseAuth.getCurrentUser() == null) {
             startActivity(new Intent(List.this, Registration.class));
-        }
-        if (!firebaseAuth.getCurrentUser().isEmailVerified()) {
+        } else if (!firebaseAuth.getCurrentUser().isEmailVerified()) {
             startActivity(new Intent(List.this, Verification.class));
         }
         binding = ActivityListActivtyBinding.inflate(getLayoutInflater());
@@ -265,10 +264,9 @@ public class List extends AppCompatActivity {
         String conditions = conditions1.getText().toString();
         String area = area1.getText().toString();
         String data = new SimpleDateFormat("dd MMM yyyy, HH:mm", new Locale("ru")).format(new Date(System.currentTimeMillis()));
-
-        HelperClassThings helperClassThings = new HelperClassThings(name, describing, conditions, area, data, user.getUid(), imageURL);
-
         String id = FirebaseDatabase.getInstance().getReference("things").push().getKey();
+        HelperClassThings helperClassThings = new HelperClassThings(name, describing, conditions, area, data, user.getUid(), imageURL, id);
+
         reference = FirebaseDatabase.getInstance().getReference("things").child(spinner1.getSelectedItem().toString()).child(user.getUid()).child(id);
 
         reference.setValue(helperClassThings).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.forgetandlost.R;
 import com.example.forgetandlost.activities.DetailActivity;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class MyAdapterThings extends RecyclerView.Adapter<MyViewHolderThings> {
         String userId = dataList.get(position).getUserId();
         String conditions = dataList.get(position).getConditions();
         String area = dataList.get(position).getArea();
-
+        String key = dataList.get(position).getKey();
         Glide.with(context).load(dataList.get(position).getImage()).into(holder.listImage);
         holder.listName.setText(name);
         holder.listDescribing.setText(describing);
@@ -54,6 +55,7 @@ public class MyAdapterThings extends RecyclerView.Adapter<MyViewHolderThings> {
         holder.recCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("image", dataList.get(holder.getAdapterPosition()).getImage());
                 intent.putExtra("userId", userId);
@@ -62,6 +64,7 @@ public class MyAdapterThings extends RecyclerView.Adapter<MyViewHolderThings> {
                 intent.putExtra("data", data);
                 intent.putExtra("area", area);
                 intent.putExtra("conditions", conditions);
+                intent.putExtra("key", key);
 
                 context.startActivity(intent);
             }
