@@ -41,7 +41,7 @@ public class MyAdapterThings extends RecyclerView.Adapter<MyViewHolderThings> {
     public void onBindViewHolder(@NonNull MyViewHolderThings holder, int position) {
         String name = dataList.get(position).getName();
         String describing = dataList.get(position).getDescribing();
-        String data = dataList.get(position).getData().substring(0, dataList.get(position).getData().indexOf(","));
+        String data = dataList.get(position).getData();
         String userId = dataList.get(position).getUserId();
         String conditions = dataList.get(position).getConditions();
         String area = dataList.get(position).getArea();
@@ -49,7 +49,7 @@ public class MyAdapterThings extends RecyclerView.Adapter<MyViewHolderThings> {
         Glide.with(context).load(dataList.get(position).getImage()).into(holder.listImage);
         holder.listName.setText(name);
         holder.listDescribing.setText(describing);
-        holder.listData.setText(data);
+        holder.listData.setText(data.substring(0, dataList.get(position).getData().indexOf(",")));
 
 
         holder.recCard.setOnClickListener(new View.OnClickListener() {

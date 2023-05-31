@@ -3,6 +3,7 @@ package com.example.forgetandlost.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -203,7 +205,9 @@ public class List extends AppCompatActivity {
                 if (Arrays.asList(areas).contains(area1.getText().toString())) {
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("images").child(filePath.getLastPathSegment());
                     addThing(storageReference, dialog);
-                } else area1.setError("Неверно введена область");
+                } else {area1.setError("Неверно введена область");
+                  Vibrator vibrator =   (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100);}
             }
         });
 
@@ -268,7 +272,6 @@ public class List extends AppCompatActivity {
         HelperClassThings helperClassThings = new HelperClassThings(name, describing, conditions, area, data, user.getUid(), imageURL, id);
 
         reference = FirebaseDatabase.getInstance().getReference("things").child(spinner1.getSelectedItem().toString()).child(user.getUid()).child(id);
-
         reference.setValue(helperClassThings).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
