@@ -176,18 +176,22 @@ public class DetailActivity extends AppCompatActivity {
                             }
                             HelperClassThings thing = new HelperClassThings(etName.getText().toString(), etdescribing.getText().toString(), etconditions.getText().toString(),
                                     etarea.getText().toString(), data, userId, image, key);
-                            reference.child("Находка").child(userId).orderByChild(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                            FirebaseDatabase.getInstance().getReference("things").child("Находка").child(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if (snapshot.exists()) {
-                                        reference.child("Находка").child(userId).child(key).setValue(thing);
-                                    } else {
+                                    String ooo = String.valueOf(snapshot.child(key).child("image").getValue());
+                                    if (ooo == "null") {
                                         reference.child("Отдам даром").child(userId).child(key).setValue(thing);
+                                    } else {
+                                        reference.child("Находка").child(userId).child(key).setValue(thing);
                                     }
+
+
                                 }
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError error) {
+
                                 }
                             });
                             etName.setEnabled(false);
@@ -222,6 +226,7 @@ public class DetailActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete()) ;
                     imageURL = uriTask.getResult().toString();
                     changeImage = true;
                 }
@@ -253,7 +258,7 @@ public class DetailActivity extends AppCompatActivity {
             showToast("Одно из полей пустое");
             vibrator.vibrate(mls);
             return false;
-        } else if (Arrays.asList(areas).contains(etarea.getText().toString())) {
+        } else if (!(Arrays.asList(areas).contains(etarea.getText().toString()))) {
             showToast("Неверно введена область");
             vibrator.vibrate(mls);
             return false;

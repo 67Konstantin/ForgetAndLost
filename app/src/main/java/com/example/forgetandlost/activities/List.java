@@ -94,8 +94,10 @@ public class List extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseAuth.getCurrentUser() == null) {
             startActivity(new Intent(List.this, Registration.class));
+            finish();
         } else if (!firebaseAuth.getCurrentUser().isEmailVerified()) {
             startActivity(new Intent(List.this, Verification.class));
+            finish();
         }
         binding = ActivityListActivtyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

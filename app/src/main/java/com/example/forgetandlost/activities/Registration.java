@@ -3,6 +3,7 @@ package com.example.forgetandlost.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -49,10 +50,13 @@ public class Registration extends AppCompatActivity {
     Vibrator vibrator;
     int mls = 100, x = 0;
     FirebaseAuth firebaseAuth;
-    FirebaseDatabase dataBase;
     DatabaseReference reference;
     View layer1;
     String uid, password;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_NAME = "Name";
+    public static final String APP_PREFERENCES_EMAIL = "Email";
+    SharedPreferences mSettings;
 
 
     @Override
@@ -73,7 +77,7 @@ public class Registration extends AppCompatActivity {
             linearLayout = findViewById(R.id.lineal);
             tv2 = findViewById(R.id.tv2);
             LayoutInflater inflater = getLayoutInflater();
-
+            mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
             layer1 = inflater.inflate(R.layout.layer1, null);
         }
         SpannableString ss = new SpannableString("Даю согласие на обработку \n " + "  " + "персональных данных");
@@ -167,11 +171,12 @@ public class Registration extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        dataBase = FirebaseDatabase.getInstance();
-                                        reference = dataBase.getReference("users");
+                                        reference = FirebaseDatabase.getInstance().getReference("users");
                                         uid = FirebaseAuth.getInstance().getUid();
-                                        HelperClassUsers helperClass = new HelperClassUsers(email, name, uid, "https://firebasestorage.googleapis.com/v0/b/forgetandlost-d5238.appspot.com/o/images%2F70388%2F70388?alt=media&token=036a892f-bc27-463f-b26d-f33ca35227cc");
-                                        reference.child(uid).setValue(helperClass);
+                                        SharedPreferences.Editor editor = mSettings.edit();
+                                        editor.putString(APP_PREFERENCES_NAME, name);
+                                        editor.putString(APP_PREFERENCES_EMAIL, email);
+                                        editor.apply();
                                         FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -202,9 +207,13 @@ public class Registration extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
                             showToast("Вы успешно подтвердили почту");
+                            HelperClassUsers helperClass = new HelperClassUsers(email, name, uid, "https://firebasestorage.googleapis.com/v0/b/forgetandlost-d5238.appspot.com/o/images%2F70388%2F70388?alt=media&token=036a892f-bc27-463f-b26d-f33ca35227cc");
+                            reference.child(uid).setValue(helperClass);
                             startActivity(new Intent(Registration.this, List.class));
                         } else {
                             showToast("Вы не подтвердили почту");
+
+                            startActivity(new Intent(Registration.this, Verification.class));
                         }
                     }
                 });
