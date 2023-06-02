@@ -34,7 +34,7 @@ public class Verification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
-        user =FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         btSend = findViewById(R.id.btSendEmail);
         btCheck = findViewById(R.id.btCheckVerification);
         btLogOut = findViewById(R.id.btLogOut);
@@ -43,35 +43,43 @@ public class Verification extends AppCompatActivity {
         email = mSettings.getString(Registration.APP_PREFERENCES_EMAIL, "");
         uid = user.getUid();
     }
+
     public void LogOut(View view) {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(Verification.this, Registration.class));
     }
+
     public void Check(View view) {
 
 
         FirebaseAuth.getInstance().getCurrentUser().reload().addOnCompleteListener(task -> {
-            showToast( "Вы успешно подтвердили почту");
-            HelperClassUsers helperClass = new HelperClassUsers(email, name, uid, "https://firebasestorage.googleapis.com/v0/b/forgetandlost-d5238.appspot.com/o/images%2F70388%2F70388?alt=media&token=036a892f-bc27-463f-b26d-f33ca35227cc");
-            FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(helperClass);
-            startActivity(new Intent(Verification.this, List.class));
+            if (user.isEmailVerified()) {
+                showToast("Вы успешно подтвердили почту");
+                HelperClassUsers helperClass = new HelperClassUsers(email, name, uid, "https://firebasestorage.googleapis.com/v0/b/forgetandlost-d5238.appspot.com/o/images%2F70388%2F70388?alt=media&token=036a892f-bc27-463f-b26d-f33ca35227cc");
+                FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(helperClass);
+                startActivity(new Intent(Verification.this, List.class));
+            } else {
+                showToast("Вы не подтвердили почту");
+            }
         }).addOnFailureListener(e -> showToast("Вы не подтвердили почту"));
     }
 
     public void Send(View view) {
-        user =FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         user.sendEmailVerification().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 showToast("Письмо было отправлено на вашу почту");
             } else {
-                showToast( "Не удалось отправить письмо, попробуйте позже");
+                showToast("Не удалось отправить письмо, попробуйте позже");
             }
         });
     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
+
     public void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
