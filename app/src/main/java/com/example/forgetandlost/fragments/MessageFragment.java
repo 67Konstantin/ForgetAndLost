@@ -31,9 +31,7 @@ public class MessageFragment extends Fragment {
             ivBack = view.findViewById(R.id.imageBack);
             flSend = view.findViewById(R.id.layoutSend);
             etInputMessage = view.findViewById(R.id.inputMessage);
-            viewBackground = view.findViewById(R.id.viewBackground);
         }
-        viewBackground.setBackground(null);
         ivBack.setOnClickListener(view1 -> {
             bindingList.bottomNavigationView.findViewById(R.id.messages).performClick();
         });
