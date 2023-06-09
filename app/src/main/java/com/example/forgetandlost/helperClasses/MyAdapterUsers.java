@@ -10,11 +10,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.forgetandlost.R;
 import com.example.forgetandlost.activities.DetailActivity;
+import com.example.forgetandlost.fragments.MessageFragment;
+import com.example.forgetandlost.fragments.UsersMessagesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +52,9 @@ public class MyAdapterUsers extends RecyclerView.Adapter<MyViewHolderUsers> {
         holder.listEmail.setText(email);
 
         holder.recCard.setOnClickListener(view -> {
-            Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("image", dataList.get(holder.getAdapterPosition()).getImage());
-            context.startActivity(intent);
+            replaceFragment(new MessageFragment(),context);
         });
+
     }
 
     @Override
@@ -60,6 +65,12 @@ public class MyAdapterUsers extends RecyclerView.Adapter<MyViewHolderUsers> {
     public void searchDataList(ArrayList<HelperClassUsers> searchList) {
         dataList = searchList;
         notifyDataSetChanged();
+    }
+    public void replaceFragment(Fragment fragment, Context context) {
+        FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
     }
 }
 
@@ -77,4 +88,5 @@ class MyViewHolderUsers extends RecyclerView.ViewHolder {
         listEmail = itemView.findViewById(R.id.listEmailUsers);
         listName = itemView.findViewById(R.id.listNameUsers);
     }
+
 }

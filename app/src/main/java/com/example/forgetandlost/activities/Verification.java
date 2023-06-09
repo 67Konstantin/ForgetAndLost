@@ -50,8 +50,6 @@ public class Verification extends AppCompatActivity {
     }
 
     public void Check(View view) {
-
-
         FirebaseAuth.getInstance().getCurrentUser().reload().addOnCompleteListener(task -> {
             if (user.isEmailVerified()) {
                 showToast("Вы успешно подтвердили почту");

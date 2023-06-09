@@ -64,7 +64,7 @@ import java.util.Locale;
 
 public class List extends AppCompatActivity {
     ImageView photoThing;
-    ActivityListActivtyBinding binding;
+    static public ActivityListActivtyBinding bindingList;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
     private Uri filePath;
@@ -99,11 +99,11 @@ public class List extends AppCompatActivity {
             startActivity(new Intent(List.this, Verification.class));
             finish();
         }
-        binding = ActivityListActivtyBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        bindingList = ActivityListActivtyBinding.inflate(getLayoutInflater());
+        setContentView(bindingList.getRoot());
         replaceFragment(new LostThingsFragment());
-        binding.bottomNavigationView.setBackground(null);
-        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+        bindingList.bottomNavigationView.setBackground(null);
+        bindingList.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.lost:
                     replaceFragment(new LostThingsFragment());
@@ -121,12 +121,7 @@ public class List extends AppCompatActivity {
 
             return true;
         });
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showBottomDialog();
-            }
-        });
+        bindingList.fab.setOnClickListener(view -> showBottomDialog());
     }
 
     public void replaceFragment(Fragment fragment) {

@@ -10,11 +10,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.forgetandlost.R;
 import com.example.forgetandlost.activities.DetailActivity;
+import com.example.forgetandlost.fragments.MessageFragment;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -52,22 +57,21 @@ public class MyAdapterThings extends RecyclerView.Adapter<MyViewHolderThings> {
         holder.listData.setText(data.substring(0, dataList.get(position).getData().indexOf(",")));
 
 
-        holder.recCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.recCard.setOnClickListener(view -> {
 
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("image", dataList.get(holder.getAdapterPosition()).getImage());
-                intent.putExtra("userId", userId);
-                intent.putExtra("name", name);
-                intent.putExtra("describing", describing);
-                intent.putExtra("data", data);
-                intent.putExtra("area", area);
-                intent.putExtra("conditions", conditions);
-                intent.putExtra("key", key);
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("image", dataList.get(holder.getAdapterPosition()).getImage());
+            intent.putExtra("userId", userId);
+            intent.putExtra("name", name);
+            intent.putExtra("describing", describing);
+            intent.putExtra("data", data);
+            intent.putExtra("area", area);
+            intent.putExtra("conditions", conditions);
+            intent.putExtra("key", key);
 
-                context.startActivity(intent);
-            }
+            context.startActivity(intent);
+
+
         });
     }
 
@@ -80,6 +84,8 @@ public class MyAdapterThings extends RecyclerView.Adapter<MyViewHolderThings> {
         dataList = searchList;
         notifyDataSetChanged();
     }
+
+
 }
 
 class MyViewHolderThings extends RecyclerView.ViewHolder {
@@ -97,4 +103,5 @@ class MyViewHolderThings extends RecyclerView.ViewHolder {
         listData = itemView.findViewById(R.id.listTimeThings);
         listName = itemView.findViewById(R.id.listNameThings);
     }
+
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,11 +13,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.forgetandlost.R;
+import com.example.forgetandlost.databinding.ActivityListActivtyBinding;
 import com.example.forgetandlost.helperClasses.ALodingDialog;
 import com.example.forgetandlost.helperClasses.HelperClassUsers;
 import com.example.forgetandlost.helperClasses.MyAdapterUsers;
@@ -70,6 +73,8 @@ public class UsersMessagesFragment extends Fragment {
             searchView = view.findViewById(R.id.searchViewUsers);
             ivMyProfile = view.findViewById(R.id.imageMyProfile);
         }
+        ActivityListActivtyBinding bindingList = com.example.forgetandlost.activities.List.bindingList;
+        bindingList.fab.setVisibility(View.VISIBLE);
         try {
             FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -150,7 +155,5 @@ public class UsersMessagesFragment extends Fragment {
         adapter.searchDataList(searchList);
     }
 
-    public void showToast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-    }
+
 }

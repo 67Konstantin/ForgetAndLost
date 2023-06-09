@@ -31,6 +31,7 @@ import com.example.forgetandlost.activities.AboutApp;
 import com.example.forgetandlost.activities.MyRecords;
 import com.example.forgetandlost.activities.Registration;
 import com.example.forgetandlost.activities.SettingsProfile;
+import com.example.forgetandlost.databinding.ActivityListActivtyBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -74,6 +75,8 @@ public class ProfileFragment extends Fragment {
             tvMyRecords = view.findViewById(R.id.tvMyRecords);
             btSingOut = view.findViewById(R.id.exit_logout);
             databaseReference = FirebaseDatabase.getInstance().getReference().child("users");
+            ActivityListActivtyBinding bindingList = com.example.forgetandlost.activities.List.bindingList;
+            bindingList.fab.setVisibility(View.VISIBLE);
         }
         tvAboutApp.setOnClickListener(view1 -> startActivity(new Intent(getContext(), AboutApp.class)));
         try {

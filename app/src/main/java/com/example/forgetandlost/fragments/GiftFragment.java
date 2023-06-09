@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.forgetandlost.R;
+import com.example.forgetandlost.databinding.ActivityListActivtyBinding;
 import com.example.forgetandlost.helperClasses.ALodingDialog;
 import com.example.forgetandlost.helperClasses.HelperClassThings;
 import com.example.forgetandlost.helperClasses.MyAdapterThings;
@@ -49,7 +50,8 @@ public class GiftFragment extends Fragment {
         searchView.clearFocus();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
-
+        ActivityListActivtyBinding bindingList = com.example.forgetandlost.activities.List.bindingList;
+        bindingList.fab.setVisibility(View.VISIBLE);
         aLodingDialog = new ALodingDialog(getActivity());
         aLodingDialog.show();
         Handler handler = new Handler();

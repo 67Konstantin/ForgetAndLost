@@ -1,12 +1,13 @@
 package com.example.forgetandlost.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.forgetandlost.R;
+import com.example.forgetandlost.databinding.ActivityListActivtyBinding;
 import com.example.forgetandlost.helperClasses.ALodingDialog;
 import com.example.forgetandlost.helperClasses.HelperClassThings;
 import com.example.forgetandlost.helperClasses.MyAdapterThings;
@@ -39,13 +41,17 @@ public class LostThingsFragment extends Fragment {
     MyAdapterThings adapter;
     SearchView searchView;
     private ALodingDialog aLodingDialog;
+    RelativeLayout rlLostThings;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lost_things, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         searchView = view.findViewById(R.id.search);
+        rlLostThings = view.findViewById(R.id.rlLostThings);
+        rlLostThings.setBackground(null);
         searchView.clearFocus();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -57,6 +63,8 @@ public class LostThingsFragment extends Fragment {
         dataList = new ArrayList<>();
         adapter = new MyAdapterThings(getActivity(), dataList);
         recyclerView.setAdapter(adapter);
+        ActivityListActivtyBinding bindingList = com.example.forgetandlost.activities.List.bindingList;
+        bindingList.fab.setVisibility(View.VISIBLE);
         databaseReference = FirebaseDatabase.getInstance().getReference("things").child("Находка");
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
