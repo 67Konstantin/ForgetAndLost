@@ -164,7 +164,7 @@ public class List extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (!(name1.getText().toString().trim().equals("") && describing1.getText().toString().trim().equals("") && conditions1.getText().toString().trim().equals("") && area1.getText().toString().trim().equals("")) && x) {
+                if (!(name1.getText().toString().trim().isEmpty()) && !(describing1.getText().toString().trim().isEmpty()) && !(conditions1.getText().toString().trim().isEmpty()) && !(area1.getText().toString().trim().isEmpty()) && x) {
                     btPublishNewPost.setEnabled(true);
                 } else btPublishNewPost.setEnabled(false);
             }
